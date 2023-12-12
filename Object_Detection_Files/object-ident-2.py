@@ -1,7 +1,9 @@
 import cv2
 from picamera2 import Picamera2
+import time
 
-#thres = 0.45 # Threshold to detect object
+thres = 0.75 # Threshold to detect object
+photo_second_gap = 1
 
 classNames = []
 # classFile = "/home/volkan/Desktop/code/raspberry/Object_Detection_Files/coco.names"
@@ -54,11 +56,30 @@ if __name__ == "__main__":
     piCam.configure("preview")  # add the configurations
     piCam.start()
 
-
+    img_counter = 0
+    last_photo_time = time.time()
     while True:
         # success, img = cap.read()
-        img = piCam.capture_array()  # get the frame and let cv2 do its magic
-        result, objectInfo = getObjects(img,0.45,0.2, objects=['potted plant'])
-        #print(objectInfo)
-        cv2.imshow("Output",img)
-        cv2.waitKey(1)
+        frame = piCam.capture_array()  # get the frame and let cv2 do its magic
+        img = frame.copy()
+        result, objectInfo = getObjects(img, thres, 0.2, objects=['potted plant'])
+        # print(objectInfo)
+        cv2.imshow("Output", img)
+        k = cv2.waitKey(1)
+        if k == ord("q"):
+            break
+        elif time.time() - last_photo_time > photo_second_gap:
+            if k % 256 == 32:
+                # SPACE pressed
+                last_photo_time = time.time()
+                img_name = "opencv_frame_{}.png".format(img_counter)
+                cv2.imwrite(img_name, frame)
+                print("{} written!".format(img_name))
+                img_counter += 1
+            elif len(objectInfo) != 0:
+                last_photo_time = time.time()
+                img_name = "opencv_frame_{}.png".format(img_counter)
+                cv2.imwrite(img_name, frame)
+                print("{} written!".format(img_name))
+                img_counter += 1
+    cv2.destroyAllWindows()
