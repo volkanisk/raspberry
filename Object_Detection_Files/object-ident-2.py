@@ -1,4 +1,5 @@
 import cv2
+from picamera2 import Picamera2
 
 #thres = 0.45 # Threshold to detect object
 
@@ -39,14 +40,21 @@ def getObjects(img, thres, nms, draw=True, objects=[]):
 
 if __name__ == "__main__":
 
-    cap = cv2.VideoCapture(0)
-    cap.set(3,640)
-    cap.set(4,480)
-    #cap.set(10,70)
+    # cap = cv2.VideoCapture(0)
+    # cap.set(3,640)
+    # cap.set(4,480)
+    # #cap.set(10,70)
+    piCam = Picamera2()
+    piCam.preview_configuration.main.size = (640, 480)  # setting the size
+    piCam.preview_configuration.main.format = ("RGB888")  # turning to BRG as cv2 uses
+    piCam.preview_configuration.align()  # for non-formal size --> normal size automatically
+    piCam.configure("preview")  # add the configurations
+    piCam.start()
 
 
     while True:
-        success, img = cap.read()
+        # success, img = cap.read()
+        img = piCam.capture_array()  # get the frame and let cv2 do its magic
         result, objectInfo = getObjects(img,0.45,0.2, objects=['potted plant'])
         #print(objectInfo)
         cv2.imshow("Output",img)
