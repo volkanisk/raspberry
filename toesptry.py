@@ -26,5 +26,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
   for i in range(10):
     stop(s)
     # listen(s)
-    time.sleep(1.1)
+    time.sleep(3)
 
