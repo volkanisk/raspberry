@@ -5,7 +5,7 @@ import json
 
 class ConnectionControl():
     def __init__(self, user_id):
-        self.url = "18.206.230.56:5002"
+        self.url = "http://18.206.230.56:5002"
         self.plant_exists = True
         self.user_id = user_id
         return
