@@ -33,9 +33,10 @@ class ConnectionControl():
 
     def send_image(self, plantOrder, plantImage):
         url = self.url + "/plantImage"
+        image_base64 = self.encode_file_to_base64(plantImage)
         headers = {'Content-Type': 'application/json'}
         payload = {
-            'base64': plantImage,  # Corrected to pass the user_id as an object with a 'userId' property
+            'base64': image_base64,  # Corrected to pass the user_id as an object with a 'userId' property
             'order': plantOrder,
             "userId": self.user_id  # Corrected variable name from 'type' to 'plant_type' to avoid conflict
         }
@@ -51,3 +52,9 @@ class ConnectionControl():
         }
         response = requests.post(url, json=payload, headers=headers)
         return response
+
+    def encode_file_to_base64(self, image):
+        img_bytes = BytesIO()
+        image.save(img_bytes, format='PNG')
+        # image.save(img_bytes, format='JPEG')
+        return base64.b64encode(img_bytes.getvalue()).decode('utf-8')
