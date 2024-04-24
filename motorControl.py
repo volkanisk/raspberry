@@ -21,18 +21,18 @@ class MotorControl():
     def sleep(self, seconds):
         time.sleep(seconds)
 
-# Example usage:
-time_len = 0.3
-motor_controller = MotorControl(esp_ip)
-for i in range(1):
-    motor_controller.actuator("run")
-    motor_controller.sleep(time_len)
-    motor_controller.actuator("stop")
-    motor_controller.sleep(time_len)
-    motor_controller.actuator("run")
-    motor_controller.sleep(2*time_len)
-    motor_controller.actuator("stop")
-    motor_controller.sleep(2*time_len)
-    motor_controller.actuator("terminate")
+# # Example usage:
+# time_len = 0.3
+# motor_controller = MotorControl(esp_ip)
+# for i in range(1):
+#     motor_controller.actuator("run")
+#     motor_controller.sleep(time_len)
+#     motor_controller.actuator("stop")
+#     motor_controller.sleep(time_len)
+#     motor_controller.actuator("run")
+#     motor_controller.sleep(2*time_len)
+#     motor_controller.actuator("stop")
+#     motor_controller.sleep(2*time_len)
+#     motor_controller.actuator("terminate")
 
 
