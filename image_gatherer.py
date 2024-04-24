@@ -19,7 +19,7 @@ piCam.start()
 esp_ip = '192.168.43.41'
 motor_controller = MotorControl(esp_ip=esp_ip)
 
-connection_id = "6628d9b4f643fdeb5af093eb"
+connection_id = "6628dc57f643fdeb5af0946f"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 
@@ -28,7 +28,7 @@ for i in range(3):
     image_array.append(get_image(piCam))
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
-    motor_controller.sleep(0.5)
+    motor_controller.sleep(1)
     motor_controller.actuator("stop")
     motor_controller.sleep(0.2)
 motor_controller.actuator("terminate")
