@@ -30,8 +30,8 @@ for i in range(3):
     motor_controller.actuator("run")
     motor_controller.sleep(0.5)
     motor_controller.actuator("stop")
-    motor_controller.sleep(0.1)
-    motor_controller.actuator("terminate")
+    motor_controller.sleep(0.2)
+motor_controller.actuator("terminate")
 
 connection_controller.send_image_controller(image_array)
 
