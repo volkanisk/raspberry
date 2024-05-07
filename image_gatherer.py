@@ -7,6 +7,7 @@ from connectionControl import ConnectionControl
 def get_image(piCam):
     frame = piCam.capture_array()
     pil_image = Image.fromarray(frame)
+    pil_image = pil_image.convert('RGB')  
     pil_image = pil_image.resize((128,128))
     return pil_image
 
