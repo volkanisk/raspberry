@@ -25,7 +25,7 @@ connection_controller = ConnectionControl(user_id=connection_id)
 
 
 image_array = []
-for i in range(3):
+for i in range(4):
     image_array.append(get_image(piCam))
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
