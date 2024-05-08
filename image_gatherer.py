@@ -12,7 +12,8 @@ def get_image(piCam):
     return pil_image
 
 piCam = Picamera2()
-piCam.preview_configuration.main.size=(1280,720) # setting the size
+#piCam.preview_configuration.main.size=(1280,720) # setting the size
+piCam.preview_configuration.main.size=(128,128) # setting the size
 piCam.preview_configuration.align() # for non-formal size --> normal size automatically
 piCam.configure("preview")  # add the configurations
 piCam.start()
