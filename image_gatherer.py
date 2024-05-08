@@ -29,9 +29,9 @@ for i in range(3):
     image_array.append(get_image(piCam))
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
-    motor_controller.sleep(1)
+    motor_controller.sleep(3.90)
     motor_controller.actuator("stop")
-    motor_controller.sleep(0.2)
+    motor_controller.sleep(5)
 motor_controller.actuator("terminate")
 
 connection_controller.send_images_controller(image_array)
