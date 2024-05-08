@@ -7,6 +7,7 @@ from connectionControl import ConnectionControl
 def get_image(piCam):
     frame = piCam.capture_array()
     pil_image = Image.fromarray(frame)
+    pil_image = pil_image.convert('RGB')  
     pil_image = pil_image.resize((128,128))
     return pil_image
 
@@ -19,7 +20,7 @@ piCam.start()
 esp_ip = '192.168.43.41'
 motor_controller = MotorControl(esp_ip=esp_ip)
 
-connection_id = "6628dc57f643fdeb5af0946f"
+connection_id = "663a4c7919c8de53a0eeb249"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 
@@ -33,7 +34,7 @@ for i in range(3):
     motor_controller.sleep(0.2)
 motor_controller.actuator("terminate")
 
-connection_controller.send_image_controller(image_array)
+connection_controller.send_images_controller(image_array)
 
 
 
