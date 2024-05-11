@@ -18,7 +18,7 @@ class Camera(object):
         frame = self.piCam.capture_array()
         pil_image = Image.fromarray(frame)
         pil_image = pil_image.convert('RGB')
-        pil_image = pil_image.resize((128, 128))
+        pil_image = pil_image.resize((256, 256))
         img_io = BytesIO()
         pil_image.save(img_io, 'JPEG')
         img_io.seek(0)
