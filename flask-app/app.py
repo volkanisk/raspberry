@@ -8,8 +8,8 @@ app = Flask(__name__)
 class Camera(object):
     def __init__(self):
         self.piCam = Picamera2()
-        #self.piCam.preview_configuration.main.size=(128,128) # setting the size
-        self.piCam.preview_configuration.main.size = (1536, 864)  # setting the size
+        self.piCam.preview_configuration.main.size=(128,128) # setting the size
+        #self.piCam.preview_configuration.main.size = (1536, 864)  # setting the size
         self.piCam.preview_configuration.align() # for non-formal size --> normal size automatically
         self.piCam.configure("preview")  # add the configurations
         self.piCam.start()
