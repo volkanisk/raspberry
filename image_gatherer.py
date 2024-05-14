@@ -31,7 +31,7 @@ image_array.append(get_image(piCam))
 for i in range(3):
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
-    motor_controller.sleep(4)
+    motor_controller.sleep(3.9)
     motor_controller.actuator("stop")
     motor_controller.sleep(0.3)
     image_array.append(get_image(piCam))
