@@ -22,7 +22,7 @@ piCam.start()
 esp_ip = '192.168.43.41'
 motor_controller = MotorControl(esp_ip=esp_ip)
 
-connection_id = "66439e73cfeb9f144f4f192"
+connection_id = "6643a2dc8cd9c7d5dc6c2d91"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 
@@ -39,8 +39,8 @@ try:
     connection_controller.send_images_controller(image_array)
 except Exception as e:
     print(f"An error occurred: {e}")
+finally:
     motor_controller.actuator("terminate")
-motor_controller.actuator("terminate")
 
 
 
