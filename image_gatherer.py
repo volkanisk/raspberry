@@ -37,7 +37,8 @@ for i in range(3):
     image_array.append(get_image(piCam))
 try:
     connection_controller.send_images_controller(image_array)
-except:
+except Exception as e:
+    print(f"An error occurred: {e}")
     motor_controller.actuator("terminate")
 motor_controller.actuator("terminate")
 
