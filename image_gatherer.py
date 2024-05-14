@@ -3,17 +3,18 @@ from PIL import Image
 from motorControl import MotorControl
 from connectionControl import ConnectionControl
 
+img_size = 160
 
 def get_image(piCam):
     frame = piCam.capture_array()
     pil_image = Image.fromarray(frame)
     pil_image = pil_image.convert('RGB')  
-    pil_image = pil_image.resize((128,128))
+    pil_image = pil_image.resize((img_size,img_size))
     return pil_image
 
 piCam = Picamera2()
 #piCam.preview_configuration.main.size=(1280,720) # setting the size
-piCam.preview_configuration.main.size=(128,128) # setting the size
+piCam.preview_configuration.main.size=(img_size,img_size) # setting the size
 piCam.preview_configuration.align() # for non-formal size --> normal size automatically
 piCam.configure("preview")  # add the configurations
 piCam.start()
