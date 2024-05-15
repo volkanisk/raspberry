@@ -21,7 +21,7 @@ piCam.start()
 esp_ip = '192.168.43.41'
 motor_controller = MotorControl(esp_ip=esp_ip)
 
-connection_id = "66447ca01ce89e8351c503ae"
+connection_id = "664480c81ce89e8351c5061e"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 test_num = 40
