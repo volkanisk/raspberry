@@ -27,15 +27,19 @@ connection_id = "664658f62c57fc2b71b56ae3"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 image_array = []
-for i in range(PLANT_COUNT):
-    image = get_image(piCam)
-    connection_controller.send_image(i,image)
-    image_array.append(image)
+image = get_image(piCam)
+connection_controller.send_image(0,image)
+image_array.append(image)
+for i in range(PLANT_COUNT-1):
+
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
     motor_controller.sleep(3.90)
     motor_controller.actuator("stop")
     motor_controller.sleep(0.3)
+    image = get_image(piCam)
+    connection_controller.send_image(i + 1, image)
+    image_array.append(image)
 try:
     connection_controller.send_images_controller(image_array)
 except Exception as e:
