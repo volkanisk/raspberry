@@ -23,7 +23,7 @@ piCam.start()
 esp_ip = '192.168.43.41'
 motor_controller = MotorControl(esp_ip=esp_ip)
 
-connection_id = "664648f7daa45d1b43989938"
+connection_id = "664658f62c57fc2b71b56ae3"
 connection_controller = ConnectionControl(user_id=connection_id)
 
 image_array = []
