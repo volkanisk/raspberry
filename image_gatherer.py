@@ -4,6 +4,7 @@ from motorControl import MotorControl
 from connectionControl import ConnectionControl
 
 img_size = 160
+PLANT_COUNT = 4
 
 def get_image(piCam):
     frame = piCam.capture_array()
@@ -25,16 +26,16 @@ motor_controller = MotorControl(esp_ip=esp_ip)
 connection_id = "664648f7daa45d1b43989938"
 connection_controller = ConnectionControl(user_id=connection_id)
 
-
 image_array = []
-image_array.append(get_image(piCam))
-for i in range(3):
+for i in range(PLANT_COUNT):
+    image = get_image(piCam)
+    connection_controller.send_image(i,image)
+    image_array.append(image)
     motor_controller.sleep(0.2)
     motor_controller.actuator("run")
     motor_controller.sleep(3.90)
     motor_controller.actuator("stop")
     motor_controller.sleep(0.3)
-    image_array.append(get_image(piCam))
 try:
     connection_controller.send_images_controller(image_array)
 except Exception as e:
